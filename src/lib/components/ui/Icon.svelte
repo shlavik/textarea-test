@@ -1,13 +1,13 @@
 <script lang="ts">
 	export type IconName = "arrow" | "stop" | "text" | "picture" | "picture-alt";
 
-	interface Props {
+	interface IconProps {
 		name: IconName;
 		size?: string | number;
 		color?: string;
 	}
 
-	let { name, size, color = "currentColor" }: Props = $props();
+	let { name, size, color = "currentColor" }: IconProps = $props();
 
 	const icons: Record<IconName, string> = {
 		arrow: `<path d="M9.99976 4.1665L9.99976 16.6665" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.83325 7.50001L9.41066 3.9226C9.68844 3.64482 9.82733 3.50593 9.99992 3.50593C10.1725 3.50593 10.3114 3.64482 10.5892 3.9226L14.1666 7.50001" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`,

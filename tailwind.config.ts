@@ -7,7 +7,8 @@ export default {
 		extend: {
 			colors: {
 				primary: "#232323",
-				secondary: "#F2F1F4", // Text
+				secondary: "#F2F1F4",
+				darkness: "#131216",
 				button: {
 					light: "#F2EDFD",
 					DEFAULT: "#444444",

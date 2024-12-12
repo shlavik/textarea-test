@@ -3,14 +3,19 @@
 	import { prompt } from "$lib/stores";
 	import type { Snippet } from "svelte";
 
-	interface Props {
+	interface PromptAreaProps {
 		onkeydown?: (event: KeyboardEvent) => void;
 		height?: number;
 		children?: Snippet;
 		send?: Snippet;
 	}
 
-	let { height = $bindable(), onkeydown, children, send }: Props = $props();
+	let {
+		height = $bindable(),
+		onkeydown,
+		children,
+		send,
+	}: PromptAreaProps = $props();
 
 	let value: string = $state("");
 

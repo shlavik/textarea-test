@@ -45,14 +45,36 @@
 			bind:height={promptAreaHeight}
 			bind:this={promptAreaInstance}
 		>
-			<Button onclick={() => {}}><Icon name="text" /></Button>
-			<Button onclick={() => {}}><Icon name="picture" /></Button>
+			<Button variant="transparent" onclick={() => {}}>
+				<Icon name="text" />
+			</Button>
+			<Button variant="dark" text="picture" onclick={() => {}}>
+				<Icon name="picture" />
+			</Button>
 			<Button onclick={() => {}}><Icon name="stop" /></Button>
-			<Icon color="red" name="text" />
-			<Icon color="red" name="picture" />
-			<Icon color="red" name="picture-alt" />
-			<Icon color="red" name="arrow" />
-			<Icon color="red" name="stop" />
+			<Button>
+				<Icon name="picture" />
+			</Button>
+
+			<!-- Тёмная кнопка -->
+			<Button variant="dark" text="Dark Button">
+				<Icon name="picture" />
+			</Button>
+
+			<!-- Прозрачная кнопка -->
+			<Button variant="transparent" text="Transparent Button">
+				<Icon name="picture" />
+			</Button>
+
+			<!-- Только иконка (круглая кнопка) -->
+			<Button variant="light">
+				<Icon name="picture" />
+			</Button>
+
+			<!-- Отключенная кнопка -->
+			<Button disabled text="Disabled Button">
+				<Icon name="picture" />
+			</Button>
 
 			{#snippet send()}
 				<Button disabled={!$prompt} {onclick}>
