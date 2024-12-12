@@ -1,0 +1,34 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "@fontsource/sora";
+
+::selection {
+	background-color: #23239d;
+	color: #ffffff;
+}
+
+::-webkit-scrollbar {
+	width: 0.5rem;
+	height: 0.5rem;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #ffffff42;
+	cursor: default;
+	border-radius: 0.25rem;
+	border: 1px solid #ffffff28;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	border-width: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:active {
+	border-width: 1px;
+}
+
+::-webkit-scrollbar-corner {
+	background-color: transparent;
+}
