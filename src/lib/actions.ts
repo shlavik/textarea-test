@@ -2,7 +2,7 @@ interface AutoresizeOptions {
 	maxRows?: number;
 }
 
-export function autoresize(
+export function autoResize(
 	node: HTMLTextAreaElement,
 	options?: AutoresizeOptions,
 ) {

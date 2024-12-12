@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { autoresize } from "$lib/actions";
-	import { prompt } from "$lib/stores";
+	import { autoResize } from "$lib/actions";
+	import { chatStore, setPrompt, submit } from "$lib/stores.svelte";
 	import type { Snippet } from "svelte";
 
 	interface PromptAreaProps {
-		onkeydown?: (event: KeyboardEvent) => void;
 		height?: number;
 		children?: Snippet;
 		send?: Snippet;
@@ -12,18 +11,16 @@
 
 	let {
 		height = $bindable(),
-		onkeydown,
 		children,
-		send,
+		send: sendPlace,
 	}: PromptAreaProps = $props();
 
-	let value: string = $state("");
-
-	export function clear() {
-		value = "";
+	function onkeydown(event: KeyboardEvent) {
+		if (event.key !== "Enter" || event.shiftKey) return;
+		event.preventDefault();
+		if (!prompt) return;
+		submit();
 	}
-
-	$effect(() => prompt.set(value));
 </script>
 
 <label
@@ -33,19 +30,20 @@
 	<textarea
 		class="h-full w-full resize-none overflow-y-hidden border-none bg-transparent text-sm text-gray-300 placeholder:text-gray-400 focus:outline-none"
 		placeholder="Ask anything"
+		value={chatStore.prompt}
+		oninput={(e) => setPrompt(e.currentTarget.value)}
 		{onkeydown}
-		use:autoresize={{ maxRows: 7 }}
-		bind:value
+		use:autoResize={{ maxRows: 7 }}
 	></textarea>
 
-	{#if children || send}
+	{#if children || sendPlace}
 		<div class="flex flex-row">
-			<div class="flex flex-grow">
+			<div class="-ml-3 mr-4 flex flex-grow gap-2">
 				{@render children?.()}
 			</div>
 
-			<div class="flex-shrink-0">
-				{@render send?.()}
+			<div class="flex-shrink-0 gap-2">
+				{@render sendPlace?.()}
 			</div>
 		</div>
 	{/if}

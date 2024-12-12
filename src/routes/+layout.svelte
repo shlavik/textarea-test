@@ -1,28 +1,9 @@
 <script lang="ts">
-	import { log } from "$lib/stores";
-	import type { Snippet } from "svelte";
 	import "../app.css";
 
-	interface Props {
-		children: Snippet;
-	}
-
-	let { children }: Props = $props();
-
-	let mainElement: HTMLElement;
-
-	$effect(() => {
-		$log;
-		mainElement?.scrollTo({
-			top: mainElement.scrollHeight,
-			behavior: "smooth",
-		});
-	});
+	let { children } = $props();
 </script>
 
-<main
-	class="flex min-h-screen items-center justify-center overflow-x-hidden overflow-y-scroll pl-2"
-	bind:this={mainElement}
->
+<main class="flex min-h-screen items-center justify-center pl-2">
 	{@render children()}
 </main>

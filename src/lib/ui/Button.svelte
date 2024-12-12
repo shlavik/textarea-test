@@ -1,23 +1,28 @@
-<script lang="ts">
+<script module>
 	import type { Snippet } from "svelte";
-	import clsx from "clsx";
 
-	type ButtonVariant = "light" | "dark" | "transparent";
-	type ButtonSize = "icon" | "default";
+	export type ButtonVariant = "light" | "dark" | "transparent";
+	export type ButtonSize = "icon" | "text";
 
-	interface ButtonProps {
+	export interface ButtonProps {
 		variant?: ButtonVariant;
 		text?: string;
 		size?: ButtonSize;
+		title?: string;
 		disabled?: boolean;
 		onclick?: (event: MouseEvent) => void;
 		children?: Snippet;
 	}
+</script>
+
+<script lang="ts">
+	import clsx from "clsx";
 
 	let {
 		variant = "light",
 		text,
-		size = text ? "default" : "icon",
+		size,
+		title,
 		disabled = false,
 		onclick,
 		children,
@@ -34,22 +39,25 @@
 
 	const SIZE_CLASSES = {
 		icon: "w-10 h-10 p-2",
-		default: "h-10 px-3 py-2",
+		text: "h-10 px-3 py-2",
 	} as const;
 
 	function handleClick(event: MouseEvent) {
 		if (!disabled) onclick?.(event);
 	}
+
+	let sizeKey = $derived<ButtonSize>(size || text ? "text" : "icon");
 </script>
 
 <button
-	{disabled}
 	class={clsx(
 		BASE_CLASSES,
 		VARIANT_CLASSES[variant],
-		SIZE_CLASSES[size],
+		SIZE_CLASSES[sizeKey],
 		disabled && "cursor-not-allowed opacity-50",
 	)}
+	{title}
+	{disabled}
 	onclick={handleClick}
 >
 	{@render children?.()}

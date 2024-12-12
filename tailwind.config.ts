@@ -29,7 +29,7 @@ export default {
 				sans: ["Sora", ...defaultTheme.fontFamily.sans],
 			},
 			screens: {
-				us: "320px", // Ultra Small
+				us: "440px", // Ultra Small
 			},
 			boxShadow: {
 				overlay:
