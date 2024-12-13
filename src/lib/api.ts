@@ -8,7 +8,12 @@ const TEXT_RESPONSES = [
 	"Based on the available data...",
 ];
 
-const IMAGE_URLS = ["/images/gen.jpg"];
+const IMAGE_URLS = [
+	"/images/gen1.jpg",
+	"/images/gen2.jpg",
+	"/images/gen3.jpg",
+	"/images/gen4.jpg",
+];
 
 const getRandomItem = <T>(arr: T[]): T => {
 	return arr[Math.floor(Math.random() * arr.length)];

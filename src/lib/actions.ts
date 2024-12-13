@@ -24,11 +24,13 @@ export function autoResize(
 
 	const handlePaste = () => setTimeout(updateHeight);
 
-	node.addEventListener("change", updateHeight);
+	node.addEventListener("input", updateHeight);
 	node.addEventListener("paste", handlePaste);
 
 	const resizeObserver = new ResizeObserver(updateHeight);
 	resizeObserver.observe(node);
+
+	setTimeout(updateHeight);
 
 	return {
 		update: (newOptions?: AutoresizeOptions) => {
@@ -38,7 +40,7 @@ export function autoResize(
 			}
 		},
 		destroy: () => {
-			node.removeEventListener("change", updateHeight);
+			node.removeEventListener("input", updateHeight);
 			node.removeEventListener("paste", handlePaste);
 			resizeObserver.disconnect();
 		},

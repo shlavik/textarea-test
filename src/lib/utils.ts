@@ -7,13 +7,12 @@ interface ScrollToBottomOptions {
 export function scrollToBottom({
 	node = window.document.documentElement,
 	behavior = "instant",
-	threshold = 90,
+	threshold = 100,
 }: ScrollToBottomOptions = {}) {
 	const currentPosition = node.scrollTop + node.clientHeight;
 	const totalHeight = node.scrollHeight;
-	const scrollPercentage = (currentPosition / totalHeight) * 100;
 
-	if (scrollPercentage < threshold) return;
+	if (totalHeight - currentPosition > threshold) return;
 
 	node.scrollTo({
 		top: totalHeight,

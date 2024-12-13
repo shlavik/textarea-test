@@ -15,7 +15,7 @@ export interface ChatMessage {
 
 export interface ChatContext {
 	prompt: string;
-	mode: ChatMode;
+	mode: ChatMode | null;
 	messages: ChatMessage[];
 	abortController: AbortController | null;
 }
@@ -24,8 +24,8 @@ export type ChatEvents =
 	| { type: "SET_PROMPT"; prompt: string }
 	| { type: "SET_MODE"; mode: ChatMode }
 	| { type: "SUBMIT" }
-	| { type: "RESET" }
-	| { type: "STOP" };
+	| { type: "STOP" }
+	| { type: "RESET" };
 
 const chatMachine = createMachine(
 	{
@@ -37,7 +37,7 @@ const chatMachine = createMachine(
 		initial: "idle",
 		context: {
 			prompt: "",
-			mode: "text",
+			mode: null,
 			messages: [],
 			abortController: null,
 		},
@@ -66,7 +66,7 @@ const chatMachine = createMachine(
 								{
 									id: crypto.randomUUID(),
 									from: "user" as MessageFrom,
-									kind: context.mode,
+									kind: context.mode || "text",
 									content: context.prompt,
 									timestamp: Date.now(),
 								},
@@ -90,7 +90,7 @@ const chatMachine = createMachine(
 						{
 							id: "placeholder",
 							from: "ai" as MessageFrom,
-							kind: context.mode,
+							kind: context.mode || "text",
 							content: "...",
 							timestamp: Date.now(),
 						},
@@ -105,7 +105,7 @@ const chatMachine = createMachine(
 								.at(-1) as ChatMessage;
 							return chatAPI.generateResponse(
 								lastUserMessage.content,
-								context.mode,
+								context.mode || "text",
 								context.abortController!.signal,
 							);
 						},
@@ -119,7 +119,7 @@ const chatMachine = createMachine(
 								{
 									id: crypto.randomUUID(),
 									from: "ai" as MessageFrom,
-									kind: context.mode,
+									kind: context.mode || "text",
 									content: event.output,
 									timestamp: Date.now(),
 								},

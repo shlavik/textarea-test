@@ -10,6 +10,7 @@
 	): Partial<ButtonProps> {
 		return {
 			title: text,
+			disabled: chatStore.isProcessing,
 			...(chatStore.mode === mode
 				? {
 						variant: "dark",

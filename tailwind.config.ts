@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
 	content: ["./src/**/*.{html,js,svelte,ts}"],
@@ -26,14 +25,15 @@ export default {
 				},
 			},
 			fontFamily: {
-				sans: ["Sora", ...defaultTheme.fontFamily.sans],
+				sans: ["Sora", "Roboto"],
 			},
 			screens: {
-				us: "440px", // Ultra Small
+				us: "496px", // Ultra Small
 			},
 			boxShadow: {
+				user: "-0.25rem -0.25rem 1.25rem #FF121688",
 				overlay:
-					"inset 0 8rem 3rem -5rem #232323, inset 0 -8rem 4rem -4rem #232323",
+					"inset 0 7rem 3rem -6rem #232323, inset 0 -7rem 3rem -5rem #232323",
 			},
 		},
 	},

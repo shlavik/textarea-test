@@ -33,7 +33,7 @@
 		value={chatStore.prompt}
 		oninput={(e) => setPrompt(e.currentTarget.value)}
 		{onkeydown}
-		use:autoResize={{ maxRows: 7 }}
+		use:autoResize={{ maxRows: 10 }}
 	></textarea>
 
 	{#if children || sendPlace}

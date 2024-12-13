@@ -11,30 +11,28 @@
 	let promptAreaHeight: number = $state(0);
 
 	$effect(() => {
-		promptAreaHeight;
-		scrollToBottom();
+		scrollToBottom({ threshold: promptAreaHeight });
 	});
 
 	$effect(() => {
-		if (chatStore.isProcessing || chatStore.isResponding) {
-			scrollToBottom({ behavior: "smooth", threshold: 0 });
-		}
+		if (!chatStore.isProcessing) return;
+		scrollToBottom({
+			behavior: "smooth",
+			threshold: chatStore.mode === "text" || null ? 200 : 1000,
+		});
 	});
 </script>
 
 <div class="flex flex-grow flex-col pl-4 pr-4">
-	<div
-		class="flex-1 flex-grow space-y-4 pl-12 pr-4 pt-16"
-		style:padding-bottom="calc({promptAreaHeight}px + 5rem)"
-	>
+	<div style:padding-bottom="calc({promptAreaHeight}px + 3rem)">
 		<Messages />
 	</div>
 
 	<div
-		class="pointer-events-none fixed bottom-0 left-0 right-2 mx-auto flex size-0 h-svh w-auto max-w-5xl flex-shrink-0 items-end gap-5 p-4 pr-14 shadow-overlay"
+		class="pointer-events-none fixed bottom-0 left-2 right-0 m-auto flex h-svh max-w-5xl items-end gap-5 p-8 pb-4 shadow-overlay"
 	>
 		<div class="hidden us:block">
-			<Avatar />
+			<Avatar role="ai" />
 		</div>
 
 		<PromptArea bind:height={promptAreaHeight}>
@@ -49,5 +47,9 @@
 				</Button>
 			{/snippet}
 		</PromptArea>
+
+		<div class="hidden us:block">
+			<Avatar role="user" />
+		</div>
 	</div>
 </div>
