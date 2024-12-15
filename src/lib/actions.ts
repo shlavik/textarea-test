@@ -11,10 +11,14 @@ export function autoResize(
 
 	const updateHeight = () => {
 		node.style.height = "auto";
+		const { scrollHeight } = node;
 		const maxHeight = parseInt(getComputedStyle(node).lineHeight) * maxRows;
-		const newHeight = Math.min(node.scrollHeight, maxHeight);
+		const newHeight = Math.min(scrollHeight, maxHeight);
 		node.style.height = newHeight + "px";
-		node.style.overflowY = node.scrollHeight > newHeight ? "auto" : "hidden";
+		node.style.overflowY = scrollHeight > newHeight ? "auto" : "hidden";
+		node.dispatchEvent(
+			new CustomEvent("scrollheight", { detail: { scrollHeight } }),
+		);
 		if (newHeight === lastHeight) return;
 		lastHeight = newHeight;
 		node.dispatchEvent(

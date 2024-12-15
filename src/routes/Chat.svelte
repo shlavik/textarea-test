@@ -8,23 +8,24 @@
 	import Icon from "$lib/ui/Icon.svelte";
 	import { scrollToBottom } from "$lib/utils";
 
-	let promptAreaHeight: number = $state(0);
+	let promptAreaBlockHeight: number = $state(0);
+	let promptAreaScrollHeight: number = $state(0);
 
 	$effect(() => {
-		scrollToBottom({ threshold: promptAreaHeight });
+		scrollToBottom({ threshold: promptAreaBlockHeight });
 	});
 
 	$effect(() => {
 		if (!chatStore.isProcessing) return;
 		scrollToBottom({
 			behavior: "smooth",
-			threshold: chatStore.mode === "text" || null ? 200 : 1000,
+			threshold: promptAreaBlockHeight + promptAreaScrollHeight + 400,
 		});
 	});
 </script>
 
 <div class="flex flex-grow flex-col pl-4 pr-4">
-	<div style:padding-bottom="calc({promptAreaHeight}px + 3rem)">
+	<div style:padding-bottom="calc({promptAreaBlockHeight}px + 3rem)">
 		<Messages />
 	</div>
 
@@ -35,7 +36,10 @@
 			<Avatar role="ai" />
 		</div>
 
-		<PromptArea bind:height={promptAreaHeight}>
+		<PromptArea
+			bind:blockHeight={promptAreaBlockHeight}
+			bind:scrollHeight={promptAreaScrollHeight}
+		>
 			<ModeSelector />
 
 			{#snippet send()}

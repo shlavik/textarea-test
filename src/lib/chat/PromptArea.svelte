@@ -4,13 +4,15 @@
 	import type { Snippet } from "svelte";
 
 	interface PromptAreaProps {
-		height?: number;
+		blockHeight?: number;
+		scrollHeight?: number;
 		children?: Snippet;
 		send?: Snippet;
 	}
 
 	let {
-		height = $bindable(),
+		blockHeight = $bindable(),
+		scrollHeight = $bindable(),
 		children,
 		send: sendPlace,
 	}: PromptAreaProps = $props();
@@ -25,14 +27,15 @@
 
 <label
 	class="pointer-events-auto relative flex flex-grow flex-col items-stretch justify-center gap-4 rounded-[30px] border border-white/10 bg-input-inactive p-6 pb-3 pr-3 shadow-lg shadow-primary focus-within:border-border-active focus-within:bg-input hover:bg-input"
-	bind:clientHeight={height}
+	bind:clientHeight={blockHeight}
 >
 	<textarea
 		class="h-full w-full resize-none overflow-y-hidden border-none bg-transparent text-sm text-gray-300 placeholder:text-gray-400 focus:outline-none"
 		placeholder="Ask anything"
 		value={chatStore.prompt}
-		oninput={(e) => setPrompt(e.currentTarget.value)}
 		{onkeydown}
+		oninput={(e) => setPrompt(e.currentTarget.value)}
+		onscrollheight={(e) => (scrollHeight = e.detail?.scrollHeight)}
 		use:autoResize={{ maxRows: 10 }}
 	></textarea>
 

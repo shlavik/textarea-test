@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Chat from "$lib/chat/Chat.svelte";
+	import Chat from "./Chat.svelte";
 </script>
 
 <svelte:head>
