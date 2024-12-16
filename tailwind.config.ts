@@ -35,6 +35,16 @@ export default {
 				overlay:
 					"inset 0 7rem 3rem -6rem #232323, inset 0 -7rem 3rem -5rem #232323",
 			},
+			keyframes: {
+				flicker: {
+					"0%, 100%": { opacity: "1" },
+					"40%": { opacity: "0.6" },
+				},
+			},
+			animation: {
+				flicker: "flicker 800ms infinite",
+				"flicker-once": "flicker 200ms",
+			},
 		},
 	},
 	plugins: [],

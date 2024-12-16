@@ -12,7 +12,7 @@
 
 <div class="relative flex h-14 w-14 items-center justify-center text-secondary">
 	<svg
-		class="absolute inset-0 m-auto"
+		class="absolute inset-0 m-auto animate-spin"
 		width="58"
 		height="58"
 		viewBox="0 0 58 58"
@@ -38,17 +38,3 @@
 		{@render children?.()}
 	</div>
 </div>
-
-<style>
-	svg {
-		animation: spinner 1s linear infinite;
-	}
-	@keyframes spinner {
-		0% {
-			transform: rotate(0deg);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
-	}
-</style>

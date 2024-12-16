@@ -33,7 +33,7 @@
 		class="pointer-events-none fixed bottom-0 left-2 right-0 m-auto flex h-svh max-w-5xl items-end gap-5 p-8 pb-4 shadow-overlay"
 	>
 		<div class="hidden us:block">
-			<Avatar role="ai" />
+			<Avatar role="ai" processing={chatStore.isProcessing} />
 		</div>
 
 		<PromptArea
@@ -53,7 +53,7 @@
 		</PromptArea>
 
 		<div class="hidden us:block">
-			<Avatar role="user" />
+			<Avatar role="user" key={chatStore.prompt} />
 		</div>
 	</div>
 </div>

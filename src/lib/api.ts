@@ -33,7 +33,7 @@ class MockChatAPI implements ChatAPI {
 		mode: ChatMode,
 		signal?: AbortSignal,
 	): Promise<string> {
-		const delay = mode === "text" ? 400 : 4000;
+		const delay = mode === "text" ? 800 : 4800;
 
 		await new Promise((resolve, reject) => {
 			const timeout = setTimeout(resolve, delay);
