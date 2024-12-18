@@ -24,13 +24,16 @@
 	});
 </script>
 
-<div class="flex flex-grow flex-col pl-4 pr-4">
-	<div style:padding-bottom="calc({promptAreaBlockHeight}px + 3rem)">
+<div class="flex flex-grow flex-col">
+	<div
+		class="px-4 pt-16 us:px-20"
+		style:padding-bottom="calc({promptAreaBlockHeight}px + 3rem)"
+	>
 		<Messages />
 	</div>
 
 	<div
-		class="pointer-events-none fixed bottom-0 left-2 right-0 m-auto flex h-svh max-w-5xl items-end gap-5 p-8 pb-4 shadow-overlay"
+		class="pointer-events-none fixed bottom-0 left-2 right-0 m-auto flex h-svh max-w-5xl items-end gap-5 p-4 pb-4 shadow-overlay us:px-8"
 	>
 		<div class="hidden us:block">
 			<Avatar role="ai" processing={chatStore.isProcessing} />

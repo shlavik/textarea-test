@@ -18,10 +18,7 @@
 	}: PromptAreaProps = $props();
 
 	function onkeydown(event: KeyboardEvent) {
-		if (event.key !== "Enter" || event.shiftKey) return;
-		event.preventDefault();
-		if (!prompt) return;
-		submit();
+		if (event.ctrlKey && event.key === "Enter" && chatStore.prompt) submit();
 	}
 </script>
 

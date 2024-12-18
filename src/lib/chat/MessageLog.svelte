@@ -5,7 +5,7 @@
 	import clsx from "clsx";
 </script>
 
-<div class="flex-1 flex-grow space-y-3 pt-16 us:px-16">
+<div class="flex-1 flex-grow space-y-3">
 	{#each chatStore.messages as { id, from, kind, content }, index (id)}
 		{@const isUser = from === "user"}
 		{@const isAI = from === "ai"}
@@ -13,10 +13,16 @@
 		{@const isImage = kind === "image"}
 		{@const isLast = index === chatStore.messages.length - 1}
 		{@const isLoading = isLast && from === "ai" && chatStore.isProcessing}
-		<div class={isUser ? "ml-16 text-right" : "mr-16 text-left"}>
+		<div
+			class={clsx(
+				"break-words",
+				isUser ? "ml-16 text-right" : "mr-16 text-left",
+			)}
+			style="overflow-wrap: anywhere"
+		>
 			<div
 				class={clsx(
-					"inline-block whitespace-pre-wrap break-all rounded-xl p-2",
+					"inline-block rounded-xl p-2",
 					isUser
 						? "bg-secondary/80 text-darkness"
 						: "bg-input-inactive text-secondary",

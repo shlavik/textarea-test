@@ -1,6 +1,6 @@
 {
 	"name": "textarea-test",
-	"version": "0.0.3",
+	"version": "0.0.7",
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
@@ -15,16 +15,16 @@
 		"@fontsource/roboto": "^5.1.0",
 		"@fontsource/sora": "^5.1.0",
 		"@sveltejs/adapter-auto": "^3.3.1",
-		"@sveltejs/kit": "^2.11.1",
-		"@sveltejs/vite-plugin-svelte": "^5.0.2",
+		"@sveltejs/kit": "^2.12.1",
+		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"autoprefixer": "^10.4.20",
 		"clsx": "^2.1.1",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.2",
 		"prettier-plugin-tailwindcss": "^0.6.9",
-		"svelte": "^5.14.0",
+		"svelte": "^5.14.4",
 		"svelte-check": "^4.1.1",
-		"tailwindcss": "^3.4.16",
+		"tailwindcss": "^3.4.17",
 		"typescript": "^5.7.2",
 		"vite": "^6.0.3",
 		"xstate": "^5.19.0"
